@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Actions;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+$prefix = 'v1';
+Route::group(['prefix' => $prefix], function () {
+    Route::post('/tokens/create', Actions\Authenticates\CreateTokenAction::class);
 });
