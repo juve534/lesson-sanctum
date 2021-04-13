@@ -1,0 +1,28 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: nanasess/setup-php@master
+        with:
+          php-version: '8.0'
+      - name: Copy Envfile
+        run: |
+          cp .env.example .env &
+      - name: Composer install
+        run: |
+          composer install
+      - name: Key Generate
+        run: |
+          php artisan key:generate &
+      - name: pcov install
+        run: |
+          sudo pecl install pcov xdebug
+      - name: Run Test
+        run: php -d pcov.enabled=1 ./vendor/bin/phpunit --coverage-html ~/reports/coverage tests/
