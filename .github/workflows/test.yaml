@@ -7,6 +7,14 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    services:
+      db:
+        image: mysql:8.0
+        env:
+          MYSQL_USERNAME: root
+          MYSQL_ROOT_PASSWORD: pass
+          DB_DATABASE: laravel
+
     steps:
       - uses: actions/checkout@v1
       - uses: nanasess/setup-php@master
@@ -24,5 +32,8 @@ jobs:
       - name: pcov install
         run: |
           sudo pecl install pcov xdebug
+      - name: db migrate
+        run: |
+          php artisan migrate
       - name: Run Test
         run: php -d pcov.enabled=1 ./vendor/bin/phpunit --coverage-html ~/reports/coverage tests/
