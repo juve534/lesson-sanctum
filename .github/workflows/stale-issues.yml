@@ -10,10 +10,5 @@ jobs:
         with:
           repo-token: ${{ secrets.TOKEN }}
           stale-issue-message: "@juve534 test"
-          # close-issue-message: "This issue was closed because it has been inactive for 14 days since being marked as stale."
-          stale-issue-label: -1
-          exempt-issue-labels: 'enhancement'
           days-before-issue-stale: 1
           days-before-issue-close: -1
-          days-before-pr-stale: -1
-          days-before-pr-close: -1
