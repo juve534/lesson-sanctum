@@ -9,5 +9,6 @@ jobs:
       - uses: actions/stale@v4
         with:
           stale-issue-message: "@juve534 test"
+          only-issue-labels: "todo"
           days-before-issue-stale: 1
           days-before-issue-close: -1
