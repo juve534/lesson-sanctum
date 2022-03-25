@@ -8,7 +8,6 @@ jobs:
     steps:
       - uses: actions/stale@v4
         with:
-          repo-token: ${{ secrets.TOKEN }}
           stale-issue-message: "@juve534 test"
           days-before-issue-stale: 1
           days-before-issue-close: -1
